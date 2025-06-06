@@ -15,18 +15,22 @@ Este repositorio contiene un sistema completo de procesamiento de datos bursáti
 ## 📁 Estructura general del proyecto
 
 ```
-├── config/
-├── kafka_services/
-├── machine_learning/
-├── output/                # Datos procesados para usar en Power BI
-├── power_bi/              # Reporte Power BI (.pbix)
-├── producer/
-├── raw_data/              # Datos crudos CSV y PDF
-├── spark/
-├── static_etl/
-├── utils/
-├── .env                   # Variables de entorno sensibles
-└── requirements.txt
+├── config/ # Rutas y configuración
+├── kafka_services/ # Docker Compose 
+├── machine_learning/ # Entrenamiento y predicción de modelos ML
+├── output/ # Datos procesados (Parquet/CSV/ZIP)                
+├── power_bi/ # Reporte Power BI (.pbix)             
+├── producer/ # Scripts para enviar datos a Kafka
+├── raw_data/  # Datos crudos (CSV y PDF)             
+├── spark/ # Procesamiento en streaming con Spark
+├── static_etl/ # Procesamiento para datos estáticos
+├── utils/ # Utilidades (conversión, helpers)
+├── venv/ ⚠️ No incluido: entorno virtual local 
+├── .env ⚠️ No incluido: debes crearlo localmente con tus variables sensibles
+├── .gitignore # Archivos/carpetas ignorados por Git 
+├── check_env.py # Verificador de variables de entorno
+├── Readme.markdown # Documentación general                
+└── requirements.txt # Dependencias del proyecto
 ```
 
 ## 🧰 Requisitos del sistema
@@ -45,10 +49,10 @@ Instala los siguientes componentes antes de ejecutar el proyecto:
 ### 1. Clonar y preparar entorno
 
 ```bash
-git clone <URL_REPOSITORIO>
-cd nombre-del-proyecto
+git clone https://github.com/4wful/bigdata.git
+cd bigdata
 python -m venv venv
-source .\venv\Scripts\Activate.ps1 
+source .\venv\Scripts\Activate.ps1  # (PowerShell en Windows)
 pip install -r requirements.txt
 ```
 
