@@ -20,8 +20,13 @@ from config.path import (
 )
 
 # === Cargar dataset original ===
+print("🧠 Realizando inferencias...")
 df = pd.read_csv(ML_CSV_PATH)
-df = df.dropna().astype(float)
+
+# === Convertir columnas relevantes a float (evitando fechas) ===
+columnas_numericas = ['open', 'high', 'low', 'close', 'volume']
+df = df.dropna(subset=columnas_numericas)
+df[columnas_numericas] = df[columnas_numericas].astype(float)
 
 # === Cargar modelo y features ===
 modelo = joblib.load(BEST_MODEL_PATH)
@@ -49,7 +54,7 @@ df_resultado = pd.DataFrame({
 df_resultado.to_csv(PRED_CSV_PATH, index=False)
 print(f"✅ Archivo de predicciones guardado en: {PRED_CSV_PATH}")
 
-# === Visualización ===
+# === Guardar visualización como imagen (no mostrar) ===
 plt.figure(figsize=(10, 5))
 plt.plot(df_resultado['real'].values[:100], label='Real', marker='o')
 plt.plot(df_resultado['predicho'].values[:100], label='Predicho', marker='x')
@@ -59,6 +64,8 @@ plt.ylabel('Precio de cierre')
 plt.legend()
 plt.grid(True)
 plt.tight_layout()
-plt.show()
 
-
+# Ruta de la imagen (misma carpeta que el CSV)
+output_img_path = str(PRED_CSV_PATH).replace('.csv', '.png')
+plt.savefig(output_img_path)
+print(f"🖼️ Gráfico guardado como imagen en: {output_img_path}")

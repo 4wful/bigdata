@@ -11,9 +11,8 @@ ROOT_DIR = os.path.abspath(os.path.join(CURRENT_DIR, '..'))
 if ROOT_DIR not in sys.path:
     sys.path.append(ROOT_DIR)
 
-# === Cargar variables del .env manualmente desde la raíz ===
+# === Cargar .env manualmente ===
 env_path = os.path.join(ROOT_DIR, '.env')
-
 if os.path.exists(env_path):
     with open(env_path) as f:
         for line in f:
@@ -29,7 +28,7 @@ BOOTSTRAP_SERVERS = os.environ.get("KAFKA_BOOTSTRAP_SERVERS").split(",")
 
 BASE_URL = "https://www.alphavantage.co/query"
 
-def get_intraday(symbol, interval="5min", outputsize="compact"):
+def get_intraday(symbol, interval="1min", outputsize="full"):
     params = {
         "function": "TIME_SERIES_INTRADAY",
         "symbol": symbol,
@@ -76,7 +75,7 @@ def main():
             "volume": values['5. volume']
         }
         producer.send(TOPIC, value=message)
-        print(f"📤 Enviado mensaje para {timestamp}")
+        print(f"📤 Enviado mensaje para {timestamp} => {message}")
 
     producer.flush()
     producer.close()
@@ -84,3 +83,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+    
