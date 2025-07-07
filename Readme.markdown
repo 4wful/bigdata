@@ -1,44 +1,46 @@
-# 📈 Proyecto: Análisis Financiero con Streaming y Power BI (Business Analytics)
+# 📈 Proyecto: Análisis de Mercados Bursátiles con Big Data y Power BI
 
-Este repositorio contiene un sistema de análisis de datos bursátiles con procesamiento en tiempo real y visualización avanzada en **Power BI**. Está orientado al curso de Business Analytics, con foco en generar insights útiles para la toma de decisiones empresariales.
+Este repositorio presenta un sistema de **procesamiento y análisis de datos financieros en tiempo real**, utilizando tecnologías de **Big Data** como Apache Kafka y Spark, con visualización avanzada en **Power BI**. El enfoque está orientado al curso de **Big Data**, aplicando sus principios al análisis del mercado bursátil para generar insights estratégicos.
 
-✔️ Adaptado para funcionar en **WSL2 sin entorno gráfico (headless)**.
+✔️ Optimizado para ejecutarse en **WSL2 en modo headless** (sin entorno gráfico).
 
 ---
 
-## 🛠️ Tecnologías utilizadas
+## 🛠️ Tecnologías y herramientas clave
 
-- **Apache Kafka** → streaming de datos financieros  
-- **Apache Spark** → procesamiento ETL en tiempo real  
-- **Python** → transformación, modelado y predicción  
-- **Scikit-learn** → regresión lineal y random forest  
-- **Power BI** → visualización de KPIs e insights  
-- **Docker** → orquestación de contenedores (Kafka + Zookeeper)
+- **Apache Kafka** → ingesta de datos en streaming desde APIs bursátiles  
+- **Apache Spark** → procesamiento distribuido y ETL en tiempo real  
+- **Python** → lógica de negocio, transformación y predicción  
+- **Scikit-learn** → modelado con regresión lineal y random forest  
+- **Power BI** → visualización de indicadores clave del mercado  
+- **Docker** → contenedores para servicios como Kafka y Zookeeper
 
 ---
 
 ## 📁 Estructura del proyecto
 
 ```
-├── config/ # Configuración central (paths, constantes)
-├── kafka_services/ # Docker Compose para Kafka y Zookeeper
-├── machine_learning/ # Entrenamiento y predicción ML
-├── output/ # Archivos finales CSV, gráficos, modelos
-├── producer/ # API → Kafka (streaming)
-├── raw_data/ # CSV y PDF crudos
-├── spark/ # Lógica de Spark Streaming
-├── static_etl/ # ETL estático (CSV/PDF)
-├── utils/ # Scripts auxiliares
-├── .env # Variables sensibles (no incluido en Git)
-├── .gitignore # Archivos y carpetas excluidos
-├── run_after_streaming.sh # Script automatizado del flujo completo
-├── requirements.txt # Dependencias del proyecto
-└── README.md # Documentación general
+├── config/ # Configuración del proyecto
+├── kafka_services/ # Orquestación Kafka + Zookeeper con Docker
+├── machine_learning/ # Entrenamiento y predicción de modelos ML
+├── output/ # Resultados (CSV, gráficos, modelos)
+├── producer/ # Ingesta de datos bursátiles → Kafka
+├── raw_data/ # Archivos CSV y PDF originales
+├── spark/ # Lógica de procesamiento con Spark Streaming
+├── static_etl/ # ETL tradicional sobre archivos planos
+├── utils/ # Funciones auxiliares
+├── .env # Variables sensibles (ignorado por Git)
+├── .gitignore # Exclusiones de control de versiones
+├── run_after_streaming.sh# Pipeline automático post-streaming
+├── requirements.txt # Dependencias Python
+└── README.md # Documentación del proyecto
 ```
 
-## 🧰 Requisitos del sistema
+---
 
-- Ubuntu + WSL2 (opcional pero compatible y probado)
+## ⚙️ Requisitos del sistema
+
+- Ubuntu con WSL2 (recomendado)
 - Python 3.10 
 - Java JDK 11 
 - Apache Spark  
@@ -48,15 +50,15 @@ Este repositorio contiene un sistema de análisis de datos bursátiles con proce
 
 ---
 
-## 🚀 Pasos para ejecutar el proyecto
+## 🚀 Ejecución del proyecto
 
-### 1. Clonar y preparar entorno
+### 1. Clonación e instalación de entorno
 
 ```bash
 git clone https://github.com/4wful/business-analytics.git
 cd business-analytics
 python -m venv venv
-source venv/bin/activate      # En Linux o WSL2
+source venv/bin/activate
 pip install -r requirements.txt
 ```
 
@@ -127,7 +129,7 @@ Dirígete a la carpeta output conecta Power BI a los archivos CSV necesarios par
 
 📷 Vista previa del Dashboard
 
-![image](https://github.com/user-attachments/assets/1a1e4ade-ba48-49ef-80ea-af239573d592)
+![image](https://github.com/user-attachments/assets/447c18f4-74cf-4cd2-b18a-b46ccbbf313b)
 
 **KPIs sugeridos:**
 
@@ -147,6 +149,6 @@ El sistema está optimizado para funcionar sin entorno gráfico (modo headless e
 El flujo completo es reproducible y automatizado desde run_after_streaming.sh.
 
 👨‍🏫 Autoría
-Grupo 4 – Trabajo final para el curso Business Analytics (2025)
+Grupo 3 – Trabajo final para el curso de Big Data (2025)
 **¡Explora, ejecuta y aprende del flujo completo de datos en tiempo real!**
 
