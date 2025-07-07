@@ -23,7 +23,7 @@ from config.path import (
 print("🧠 Realizando inferencias...")
 df = pd.read_csv(ML_CSV_PATH)
 
-# === Convertir columnas relevantes a float (evitando fechas) ===
+# === Convertir columnas relevantes a float sin eliminar event_time ===
 columnas_numericas = ['open', 'high', 'low', 'close', 'volume']
 df = df.dropna(subset=columnas_numericas)
 df[columnas_numericas] = df[columnas_numericas].astype(float)
@@ -46,23 +46,26 @@ r2 = r2_score(y, predicciones)
 print(f"📊 MSE: {mse:.4f}")
 print(f"📈 R²: {r2:.4f}")
 
-# === Guardar resultados ===
+# === Guardar resultados con event_time ===
 df_resultado = pd.DataFrame({
+    'event_time': df['event_time'],
     'real': y,
     'predicho': predicciones
 })
 df_resultado.to_csv(PRED_CSV_PATH, index=False)
 print(f"✅ Archivo de predicciones guardado en: {PRED_CSV_PATH}")
 
-# === Guardar visualización como imagen (no mostrar) ===
-plt.figure(figsize=(10, 5))
-plt.plot(df_resultado['real'].values[:100], label='Real', marker='o')
-plt.plot(df_resultado['predicho'].values[:100], label='Predicho', marker='x')
+# === Guardar visualización como imagen usando event_time ===
+plt.figure(figsize=(12, 6))
+tiempos = pd.to_datetime(df_resultado['event_time'])
+plt.plot(tiempos[:100], df_resultado['real'][:100], label='Real', marker='o')
+plt.plot(tiempos[:100], df_resultado['predicho'][:100], label='Predicho', marker='x')
 plt.title('Comparación: Precio de cierre real vs predicho')
-plt.xlabel('Muestras')
+plt.xlabel('Fecha y hora')
 plt.ylabel('Precio de cierre')
 plt.legend()
 plt.grid(True)
+plt.xticks(rotation=45)
 plt.tight_layout()
 
 # Ruta de la imagen (misma carpeta que el CSV)
