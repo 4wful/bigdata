@@ -8,7 +8,7 @@ Este repositorio presenta un sistema de **procesamiento y análisis de datos fin
 
 ## 🛠️ Tecnologías y herramientas clave
 
-- **WSL2 ´UBUNTU** → entorno de trabajo necesario
+- **WSL2 + UBUNTU** → entorno de trabajo necesario
 - **Docker** → contenedores para servicios como Kafka y Zookeeper
 - **Apache Kafka** → ingesta de datos en streaming desde APIs bursátiles  
 - **Apache Spark** → procesamiento distribuido y ETL en tiempo real  
