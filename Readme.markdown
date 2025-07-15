@@ -8,12 +8,12 @@ Este repositorio presenta un sistema de **procesamiento y análisis de datos fin
 
 ## 🛠️ Tecnologías y herramientas clave
 
+- **WSL2 ´UBUNTU** → entorno de trabajo necesario
+- **Docker** → contenedores para servicios como Kafka y Zookeeper
 - **Apache Kafka** → ingesta de datos en streaming desde APIs bursátiles  
 - **Apache Spark** → procesamiento distribuido y ETL en tiempo real  
 - **Python** → lógica de negocio, transformación y predicción  
-- **Scikit-learn** → modelado con regresión lineal y random forest  
 - **Power BI** → visualización de indicadores clave del mercado  
-- **Docker** → contenedores para servicios como Kafka y Zookeeper
 
 ---
 
@@ -40,7 +40,7 @@ Este repositorio presenta un sistema de **procesamiento y análisis de datos fin
 
 ## ⚙️ Requisitos del sistema
 
-- Ubuntu con WSL2 (recomendado)
+- Ubuntu con WSL2 
 - Python 3.10 
 - Java JDK 11 
 - Apache Spark  
@@ -55,8 +55,8 @@ Este repositorio presenta un sistema de **procesamiento y análisis de datos fin
 ### 1. Clonación e instalación de entorno
 
 ```bash
-git clone https://github.com/4wful/business-analytics.git
-cd business-analytics
+git clone https://github.com/4wful/bigdata.git
+cd bigdata
 python -m venv venv
 source venv/bin/activate
 pip install -r requirements.txt
@@ -72,7 +72,7 @@ Crea un archivo `.env` en la raíz del proyecto con el siguiente contenido:
 API_KEY=tu_api_key_de_alpha_vantage
 KAFKA_TOPIC=nombre_topic
 KAFKA_BOOTSTRAP_SERVERS=localhost:9092,localhost:9093,localhost:9094
-DEST_WIN_PATH=/mnt/c/Users/TU_USUARIO/Desktop/.../BusinessAnalytics/data
+DEST_WIN_PATH=/mnt/c/Users/TU_USUARIO/Desktop/.../bigdata/data
 ```
 
 ### 3. Levantar servicios Kafka
@@ -130,16 +130,6 @@ Dirígete a la carpeta output conecta Power BI a los archivos CSV necesarios par
 📷 Vista previa del Dashboard
 
 ![image](https://github.com/user-attachments/assets/447c18f4-74cf-4cd2-b18a-b46ccbbf313b)
-
-**KPIs sugeridos:**
-
-- Precio real vs. predicho
-
-- Volumen total negociado
-
-- Tendencia por sector / región
-
-- Errores de predicción (R², MSE)
 
 ## 📌 Notas adicionales
 Los archivos .pkl, .txt y .csv generados automáticamente se excluyen con .gitignore.
